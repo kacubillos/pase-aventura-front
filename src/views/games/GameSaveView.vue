@@ -1,17 +1,16 @@
 <template>
-    <form @submit.prevent="saveEmployee">
+    <form @submit.prevent="saveGame">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nombre de la atracción</label>
             <input type="text" v-model="game.name" class="form-control" id="exampleInputPassword1">
             
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Capacidad de personas</label>
             <input type="number" v-model="game.capacityPersons" class="form-control" id="exampleInputPassword1">
         </div>
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">duración</label>
+            <label for="exampleInputEmail1" class="form-label">Duración(min)</label>
             <input type="number" v-model="game.duration" class="form-control" id="exampleInputPassword1">
         </div>
         <div class="mb-3">
@@ -40,6 +39,8 @@ export default {
     },
     methods: {
         saveGame() {
+            //Realizo una convercion para la duración del juego y para la fecha 
+            this.game.duration = '00:'+this.game.duration+':00'
             this.game.registrationDate = new Date().toISOString();
             axios.post('/games', this.game).then(
                 response => {

@@ -12,7 +12,7 @@ const routes = [
     { path: '/empleados', component: ListView },
     { path: '/empleados/:id', component: Employee },
     { path: '/empleados/nuevo', component: SaveView },
-    { path: '/juegos', component:GameListVie},
+    { path: '/juegos', component:GameListView},
     { path: '/juegos/:id', component: Game},
     { path: '/juegos/nuevo', component: GameSaveView}
 ];

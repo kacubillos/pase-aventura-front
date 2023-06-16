@@ -1,29 +1,25 @@
 <template>
-    <h1>Empleados</h1>
-    <router-link to="/empleados/nuevo" class="btn btn-primary">Nuevo</router-link>
+    <h1>Juegos</h1>
+    <router-link to="/juegos/nuevo" class="btn btn-primary">Nuevo</router-link>
     <div class="table-responsive">
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">Tipo documento</th>
-            <th scope="col">Numero documento</th>
-            <th scope="col">Nombres</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Fecha de nacimiento</th>
-            <th scope="col">Rol</th>
+            <th scope="col">Nombre de la atracción</th>
+            <th scope="col">Capacidad de pesonas</th>
+            <th scope="col">Duración(min)</th>
+            <th scope="col">Precio de la venta</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="emp in employees" :key="emp.employeeId">
-            <th scope="row">{{ emp.documentType }}</th>
-            <td>{{ emp.documentNum }}</td>
-            <td>{{ emp.name }}</td>
-            <td>{{ emp.lastname }}</td>
-            <td>{{ emp.birthDate }}</td>
-            <td>{{ emp.role.name }}</td>
+          <tr v-for="gam in games" :key="gam.gameId">
+            <td>{{ gam.name }}</td>
+            <td>{{ gam.capacityPersons }}</td>
+            <td>{{ gam.duration }}</td>
+            <td>{{ gam.salesPrice }}</td>
             <td>
-              <router-link :to="{ path: '/empleados/' + emp.employeeId }" class="btn btn-primary">Editar</router-link>
-              <button class="btn btn-danger" @click="deleteEmployee(emp.employeeId)">Eliminar</button>
+              <router-link :to="{ path: '/juegos/' + gam.gameId }" class="btn btn-primary">Editar</router-link>
+              <button class="btn btn-danger" @click="deleteGame(gam.gameId)">Eliminar</button>
             </td>
           </tr>
         </tbody>
@@ -37,25 +33,25 @@
   export default {
     data() {
       return {
-        employees: []
+        games: []
       }
     },
     mounted: function () {
-      this.getEmployees();
+      this.getGames();
     },
     methods: {
-      getEmployees() {
-        axios.get('/employees').then(
+      getGames() {
+        axios.get('/games').then(
           response => {
-            this.employees = response.data;
+            this.games = response.data;
           }
         );
       },
-      deleteEmployee(empId) {
-        axios.delete('/employees/' + empId).then(
+      deleteGame(gamId) {
+        axios.delete('/games/' + gamId).then(
           response => {
             alert("Eliminado correctamente");
-            location.href = "/empleados";
+            location.href = "/juegos";
           }
         );
       }

@@ -14,6 +14,9 @@
           <li>
             <router-link class="nav-link active" to="/empleados">Empleados</router-link>
           </li>
+          <li>
+            <router-link class="nav-link active" to="/login">Iniciar sesion</router-link>
+          </li>
         </ul>
       </div>
     </div>

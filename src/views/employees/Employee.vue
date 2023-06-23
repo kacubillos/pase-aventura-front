@@ -35,34 +35,28 @@
     </form>
 </template>
 
-<script>
-import axios from 'axios';
+<script setup>
+    import { ref, onMounted } from 'vue';
+    import { useRoute } from 'vue-router';
+    import router from '../../router';
+    import EmployeeService from '../../services/EmployeeService.js';
 
-export default {
-    data() {
-        return {
-            id: this.$route.params.id,
-            employee: {}
-        }
-    },
-    mounted: function() {
-        axios.get('/employees/' + this.id).then(
-            response => {
-                this.employee = response.data;
-                this.employee.birthDate = this.employee.birthDate.split('T')[0];
-            }
-        );
-    },
-    methods: {
-        saveEmployee() {
-            this.employee.birthDate = new Date().toISOString(this.employee.birthDate);
-            axios.put('/employees', this.employee).then(
-                response => {
-                    console.log(response.status);
-                    location.href = "/empleados";
-                }
-            );
-        }
+    const route = useRoute();
+    const empService = new EmployeeService();
+
+    const id = route.params.id;
+    const employee = ref({});
+
+    onMounted(async () => {
+        employee.value = await empService.fetchOne(id);
+    });
+
+    const saveEmployee = async () => {
+        const isSuccess = await empService.update(employee.value);
+
+        if(isSuccess)
+            router.push('/empleados');
+        else
+            alert('Error, verifique la información.');
     }
-}
 </script>

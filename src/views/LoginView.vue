@@ -14,18 +14,19 @@
 
 <script setup>
     import { ref } from 'vue';
-    import AuthService from '../services/AuthService.js';
+    import router from '../router';
+    import useAuthStore from "../store/auth.js";
 
     let email = ref('');
     let password = ref('');
 
     const login = async () => {
-        const auth = new AuthService();
+        const auth = useAuthStore();
         const success = await auth.login(email.value, password.value);
 
         if(success)
-            console.log(auth.getJwt());
+            router.push('/');
         else
-            console.log(auth.getError());
+            console.log('Error');
     }
 </script>

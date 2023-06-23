@@ -44,12 +44,9 @@ export default {
     this.getEmployees();
   },
   methods: {
-    getEmployees() {
-      axios.get('/employees').then(
-        response => {
-          this.employees = response.data;
-        }
-      );
+    async getEmployees() {
+      const res = await axios.get('/employees');
+      this.employees = res.data;
     },
     deleteEmployee(empId) {
       axios.delete('/employees/' + empId).then(

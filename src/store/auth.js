@@ -45,8 +45,16 @@ const useAuthStore = defineStore('auth', {
                 console.log(error);
                 return false;
             }
+        },
+        logout() {
+            this.token = null;
+            this.currentUser = {
+                email: '',
+                role: ''
+            }
         }
-    }
+    },
+    persist: true
 });
 
 export default useAuthStore

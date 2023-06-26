@@ -11,6 +11,7 @@
           <li class="nav-item" v-for="(item, index) in navItems" :key="index">
             <router-link class="nav-link active" :to="{ path: item.to }">{{ item.name }}</router-link>
           </li>
+          <button v-if="token != null" @click="logout">Cerrar sesión</button>
         </ul>
       </div>
     </div>
@@ -21,18 +22,22 @@
 </template>
 
 <script setup>
-  import { ref, watch } from 'vue';
+  import { ref, watch, onMounted } from 'vue';
+  import { storeToRefs } from 'pinia';
   import useAuthStore from './store/auth';
   import role from './helpers/role';
+  import router from './router';
 
-  const navItems = ref([
+  const navItems = ref([]);
+
+  const defaultItems = [
     { name: 'Inicio', to: '/' },
     { name: 'Iniciar sesión', to: '/login' }
-  ]);
+  ];
 
   const adminItems = [
     { name: 'Inicio', to: '/home' },
-    { name: 'Empleados', to: '/empleados' }
+    { name: 'Empleados', to: '/empleados' },
   ];
 
   const empItems = [
@@ -40,13 +45,27 @@
   ];
 
   const auth = useAuthStore();
+  const { token } = storeToRefs(auth)
 
-  watch(auth.currentUser, () => {
+  const setitems = () => {
     if(auth.token != null)
       auth.currentUser.role === role.admin ? navItems.value = adminItems :  navItems.value = empItems;
-    console.log(auth.currentUser.role);
-    console.log(role.admin);
+    else
+      navItems.value = defaultItems;
+  }
+
+  onMounted(() => {
+    setitems();
   });
+
+  watch(token, () => {
+    setitems();
+  });
+
+  const logout = () => {
+    auth.logout();
+    router.push('/login');
+  }
 </script>
 
 <style scoped></style>

@@ -31,34 +31,27 @@
   </div>
 </template>
 
-<script>
-import axios from 'axios';
+<script setup>
+  import { ref, onMounted } from 'vue';
+  import EmployeeService from '../../services/EmployeeService.js';
 
-export default {
-  data() {
-    return {
-      employees: []
-    }
-  },
-  mounted: function () {
-    this.getEmployees();
-  },
-  methods: {
-    getEmployees() {
-      axios.get('/employees').then(
-        response => {
-          this.employees = response.data;
-        }
-      );
-    },
-    deleteEmployee(empId) {
-      axios.delete('/employees/' + empId).then(
-        response => {
-          alert("Eliminado correctamente");
-          location.href = "/empleados";
-        }
-      );
+  let employees = ref([])
+
+  const empService = new EmployeeService();
+  employees = empService.getEmployees();
+
+  onMounted(async () => {
+    await empService.fetchAll();
+  });
+
+  const deleteEmployee = async (empId) => {
+    const res = await empService.deleteOne(empId);
+
+    if(res) {
+      alert('Eliminado correctamente.')
+      employees.value = employees.value.filter(emp => emp.employeeId != empId);
+    } else {
+      alert('Error.')
     }
   }
-}
 </script>

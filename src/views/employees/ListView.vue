@@ -1,39 +1,23 @@
 <template>
   <h1>Empleados</h1>
   <router-link to="/empleados/nuevo" class="btn btn-primary">Nuevo</router-link>
-  <div class="table-responsive">
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">Tipo documento</th>
-          <th scope="col">Numero documento</th>
-          <th scope="col">Nombres</th>
-          <th scope="col">Apellido</th>
-          <th scope="col">Fecha de nacimiento</th>
-          <th scope="col">Rol</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="emp in employees" :key="emp.employeeId">
-          <th scope="row">{{ emp.documentType }}</th>
-          <td>{{ emp.documentNum }}</td>
-          <td>{{ emp.name }}</td>
-          <td>{{ emp.lastname }}</td>
-          <td>{{ emp.birthDate }}</td>
-          <td>{{ emp.role.name }}</td>
-          <td>
-            <router-link :to="{ path: '/empleados/' + emp.employeeId }" class="btn btn-primary">Editar</router-link>
-            <button class="btn btn-danger" @click="deleteEmployee(emp.employeeId)">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+
+  <button @click="handleLayout(CardLayout)">Tarjetas</button>
+  <button @click="handleLayout(TableLayout)">Lista</button>
+
+  <component :is="currentlayout" :content="employees"></component>
 </template>
 
 <script setup>
-  import { ref, onMounted } from 'vue';
+  import { ref, shallowRef, defineAsyncComponent, onMounted } from 'vue';
   import EmployeeService from '../../services/EmployeeService.js';
+
+  const TableLayout = defineAsyncComponent(() => import('../../layouts/TableLayout.vue'));
+  const CardLayout = defineAsyncComponent(() => import('../../layouts/CardLayout.vue'));
+
+  const currentlayout = shallowRef(CardLayout);
+
+  const handleLayout = (cmp) => currentlayout.value = cmp;
 
   let employees = ref([])
 

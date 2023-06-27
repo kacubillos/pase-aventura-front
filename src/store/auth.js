@@ -54,7 +54,12 @@ const useAuthStore = defineStore('auth', {
             }
         }
     },
-    persist: true
+    persist: {
+        afterRestore: (ctx) => {
+            if(ctx.store.token != null)
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + ctx.store.token;
+        }
+    }
 });
 
 export default useAuthStore

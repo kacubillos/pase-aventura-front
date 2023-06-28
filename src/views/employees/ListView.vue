@@ -1,9 +1,27 @@
 <template>
-  <h1>Empleados</h1>
-  <router-link to="/empleados/nuevo" class="btn btn-primary">Nuevo</router-link>
+  <div class="d-flex align-items-center justify-content-between mt-3">
+    <h1>Empleados</h1>
+    <router-link to="/empleados/nuevo" class="btn btn-primary">Nuevo</router-link>
+  </div>
 
-  <button @click="handleLayout(CardLayout)">Tarjetas</button>
-  <button @click="handleLayout(TableLayout)">Lista</button>
+  <div class="d-flex align-items-center justify-content-between my-3">
+    <form>
+      <input type="text" class="search-form__input" placeholder="Buscar por nombre" />
+      <select class="form-select">
+        <option selected="">Selecciona un rol</option>
+        <option value="">Administrador</option>
+        <option value="">Empleado</option>
+      </select>
+    </form>
+    <div>
+      <button @click="handleLayout(CardLayout)">
+        <v-icon name="md-gridview-round" />
+      </button>
+      <button @click="handleLayout(TableLayout)">
+        <v-icon name="hi-view-list" />
+      </button>
+    </div>
+  </div>
 
   <component :is="currentlayout" :content="employees"></component>
 </template>
@@ -39,3 +57,11 @@
     }
   }
 </script>
+
+<style scoped>
+  .search-form__input {
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: 1px solid #c4c4c4;
+  }
+</style>

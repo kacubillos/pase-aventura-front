@@ -1,5 +1,4 @@
 <template>
-    <h1>Table</h1>
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>

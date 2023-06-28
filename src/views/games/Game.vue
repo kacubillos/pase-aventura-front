@@ -14,7 +14,7 @@
             <input type="number" v-model="game.duration" class="form-control" id="exampleInputPassword1">
         </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Precio de venta</label>
+            <label for="exampleInputPassword1" class="form-label">Precio de entrada</label>
             <input type="number" v-model="game.salesPrice" class="form-control" id="exampleInputPassword1">
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>

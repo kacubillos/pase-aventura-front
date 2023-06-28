@@ -8,7 +8,7 @@
             <th scope="col">Nombre de la atracción</th>
             <th scope="col">Capacidad de pesonas</th>
             <th scope="col">Duración(min)</th>
-            <th scope="col">Precio de la venta</th>
+            <th scope="col">Precio de entrada</th>
           </tr>
         </thead>
         <tbody>

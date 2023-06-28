@@ -15,7 +15,10 @@
             <router-link class="nav-link active" to="/empleados">Empleados</router-link>
           </li>
           <li>
-            <router-link class="nav-link active" to="/juegos">juegos</router-link>
+            <router-link class="nav-link active" to="/juegos">Juegos</router-link>
+          </li>
+          <li>
+            <router-link class="nav-link active" to="/horarios">Horarios</router-link>
           </li>
         </ul>
       </div>

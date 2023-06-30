@@ -1,0 +1,10 @@
+.Espaciado{
+    margin-top: 20%;
+}
+
+.Formulario{
+    border: 0.25px solid #000;
+    border-radius: 10px;
+    flex-shrink: 0;
+    width: 873px;
+}

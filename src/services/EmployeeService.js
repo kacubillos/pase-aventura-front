@@ -40,6 +40,12 @@ class EmployeeService {
     }
 
     async save(employee) {
+        let result = {
+            sucessful: false,
+            body: {},
+            error: ''
+        }
+
         try {
             employee.birthDate = new Date().toISOString(employee.birthDate);
 
@@ -49,12 +55,18 @@ class EmployeeService {
                 data: employee
             });
 
-            if(res.status == 201)
-                return true;
-            else
-                return false;
+            if(res.status == 201) {
+                result.sucessful = true;
+                result.body = res.data;
+                return result;
+            }
+            else {
+                result.error = 'Error, revise la información';
+                return result;
+            }
         } catch (error) {
-            console.log(error);
+            result.error = 'Error, revise la información';
+            return result;
         }
     }
 
@@ -90,6 +102,35 @@ class EmployeeService {
                 return true;
         } catch (error) {
             console.log('Error');
+        }
+    }
+
+    async registerUser(user) {
+        let result = {
+            sucessful: false,
+            body: {},
+            error: ''
+        }
+
+        try {
+            const res = await axios({
+                method: 'post',
+                url: '/auth/register',
+                data: user
+            });
+
+            if(res.status == 201) {
+                result.sucessful = true;
+                result.body = res.data;
+                return result;
+            }
+            else {
+                result.error = 'Error, revise la información';
+                return result;
+            }
+        } catch (error) {
+            result.error = 'Error, revise la información';
+            return result;
         }
     }
 }

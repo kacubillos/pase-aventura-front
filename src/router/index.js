@@ -3,7 +3,7 @@ import LandingView from "../views/LandingView.vue";
 import LoginView from "../views/LoginView.vue";
 import HomeView from "../views/HomeView.vue";
 import ListView from "../views/employees/ListView.vue";
-import Employee from "../views/employees/Employee.vue";
+import EmployeeView from "../views/employees/Employee.vue";
 import SaveView from "../views/employees/SaveView.vue";
 import useAuthStore from "../store/auth.js";
 import Role from "../helpers/role.js";
@@ -31,7 +31,7 @@ const routes = [
     },
     {
         path: '/empleados/:id',
-        component: Employee,
+        component: EmployeeView,
         meta: { requireAuth: true, role: [ Role.admin ] }
     },
     {

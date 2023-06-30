@@ -12,10 +12,10 @@ import 'normalize.css'
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 
 /* import specific icons */
-import { MdGridviewRound, HiViewList } from "oh-vue-icons/icons";
+import { MdGridviewRound, HiViewList, MdAddRound, MdSearch, BiArrowLeftShort, MdDeleteforever } from "oh-vue-icons/icons";
 
 /* add icons to the library */
-addIcons(MdGridviewRound, HiViewList);
+addIcons(MdGridviewRound, HiViewList, MdAddRound, MdSearch, BiArrowLeftShort, MdDeleteforever);
 
 axios.defaults.baseURL = 'http://localhost:8090/api/v1/';
 

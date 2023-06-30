@@ -1,5 +1,9 @@
 <template>
-    <EmployeeCard v-for="emp in props.content" :key="emp.employeeId" :content="emp" />
+    <div class="row">
+        <div class="col-12 col-md-4 col-lg-3" v-for="emp in props.content">
+            <EmployeeCard :key="emp.employeeId" :content="emp" />
+        </div>
+    </div>
 </template>
 
 <script setup>

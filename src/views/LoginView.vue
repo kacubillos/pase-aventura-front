@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form @submit.prevent="login">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
             <input v-model="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -8,7 +8,7 @@
             <label for="exampleInputPassword1" class="form-label">Password</label>
             <input v-model="password" type="password" class="form-control" id="exampleInputPassword1">
         </div>
-        <button type="submit" class="btn btn-primary" @click.prevent="login">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </template>
 

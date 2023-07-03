@@ -3,7 +3,7 @@ import LandingView from "../views/LandingView.vue";
 import LoginView from "../views/LoginView.vue";
 import HomeView from "../views/HomeView.vue";
 import ListView from "../views/employees/ListView.vue";
-import Employee from "../views/employees/Employee.vue";
+import EmployeeView from "../views/employees/Employee.vue";
 import SaveView from "../views/employees/SaveView.vue";
 import GameListView from "../views/games/GameListView.vue";
 import Game from "../views/games/Game.vue";
@@ -18,27 +18,27 @@ const routes = [
     {
         path: '/',
         component: LandingView,
-        meta: { requireAuth: false, role: [Role.default] }
+        meta: { requireAuth: false, role: [ Role.default ] }
     },
     {
         path: '/login',
         component: LoginView,
-        meta: { requireAuth: false, role: [Role.default] }
+        meta: { requireAuth: false, role: [ Role.default ] }
     },
     {
         path: '/home',
         component: HomeView,
-        meta: { requireAuth: true, role: [Role.admin, Role.emp] }
+        meta: { requireAuth: true, role: [ Role.admin, Role.emp ] }
     },
     {
         path: '/empleados',
         component: ListView,
-        meta: { requireAuth: true, role: [Role.admin] }
+        meta: { requireAuth: true, role: [ Role.admin ] }
     },
     {
         path: '/empleados/:id',
-        component: Employee,
-        meta: { requireAuth: true, role: [Role.admin] }
+        component: EmployeeView,
+        meta: { requireAuth: true, role: [ Role.admin ] }
     },
     {
         path: '/empleados/nuevo',
@@ -89,16 +89,16 @@ router.beforeEach((to, from, next) => {
     const isAuth = auth.token;
     const userRole = auth.currentUser.role;
 
-    if (to.meta.requireAuth) {
-        if (isAuth == null)
+    if(to.meta.requireAuth) {
+        if(isAuth == null)
             return next({ path: '/login', query: { returnUrl: to.path } });
 
-        if (!to.meta.role.includes(userRole))
+        if(!to.meta.role.includes(userRole))
             return next('/home');
 
         return next();
     } else {
-        if (isAuth != null)
+        if(isAuth != null)
             return next('/home')
 
         return next();

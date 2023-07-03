@@ -2,7 +2,7 @@
     <form @submit.prevent="saveGame">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nombre de la atracción</label>
-            <input type="text" v-model="game.name" aria-label="Default select example">
+            <input type="text" v-model="game.name" class="form-control" id="exampleInputPassword1">
                 
         </div>
         <div class="mb-3">
@@ -21,34 +21,30 @@
     </form>
 </template>
 
-<script>
-import axios from 'axios';
+<script setup>
+import { ref, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import GameService from '../../services/GameService'
+const router = useRouter();
+const route = useRoute();
+const gamService = new GameService();
+const id = route.params.id;
+const game = ref({});
 
-export default {
-    data() {
-        return {
-            id: this.$route.params.id,
-            game: {}
-        }
-    },
-    mounted: function() {
-        axios.get('/games/' + this.id).then(
-            response => {
-                this.game = response.data;
-            }
-        );
-    },
-    methods: {
-        saveGame() {
-            this.game.duration = '00:'+this.game.duration+':00'
-            this.game.registrationDate = new Date().toISOString();
-            axios.put('/games', this.game).then(
-                response => {
-                    console.log(response.status);
-                    location.href = "/games";
-                }
-            );
-        }
-    }
+onMounted(async () => {
+  game.value = await gamService.fetchOne(id);
+  game.value.duration = game.value.duration.split(":")[1];
+})
+
+const saveGame = async () => {
+  const isSuccess = await gamService.update(game.value);
+  
+  if (isSuccess)
+    router.push('/juegos');
+    
+  else
+    alert('Error, verifique la información.')
 }
+
 </script>
+  

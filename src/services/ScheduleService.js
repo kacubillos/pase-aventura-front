@@ -5,7 +5,7 @@ class ScheduleService {
     constructor() {
         this.schedules = ref([])
     }
-    getSchedule() {
+    getSchedules() {
         return this.schedules;
     }
     async fetchAll() {
@@ -23,7 +23,7 @@ class ScheduleService {
         try {
             const res = await axios({
                 method: 'get',
-                url: '/schedules' + scheId
+                url: '/schedules/' + scheId
             });
             let schedule = res.data;
             return schedule;
@@ -34,7 +34,7 @@ class ScheduleService {
     async save(schedule) {
         try {
             const res = await axios({
-                methos: 'post',
+                method: 'post',
                 url: '/schedules',
                 data: schedule
             });
@@ -73,7 +73,7 @@ class ScheduleService {
             else
                 return true;
         } catch (error) {
-            console.log('Error');
+            console.log(error);
         }
     }
 }

@@ -35,32 +35,22 @@
     </form>
 </template>
 
-<script>
-import axios from 'axios';
+<script setup>
+import { ref } from 'vue';
+import EmployeeService from '../../services/EmployeeService.js';
 
-export default {
-    data() {
-        return {
-            employee: {
-                documentType: '',
-                documentNum: 0,
-                name: '',
-                lastname: '',
-                birthDate: 0,
-                roleId: 0
-            }
-        }
-    },
-    methods: {
-        saveEmployee() {
-            this.employee.birthDate = new Date().toISOString(this.employee.birthDate);
-            axios.post('/employees', this.employee).then(
-                response => {
-                    console.log(response.status);
-                    location.href = "/empleados";
-                }
-            );
-        }
-    }
+const empService = new EmployeeService();
+
+let employee = ref({
+    documentType: '',
+    documentNum: 0,
+    name: '',
+    lastname: '',
+    birthDate: '',
+    roleId: 0
+});
+
+const saveEmployee = () => {
+    empService.save(employee.value);
 }
 </script>

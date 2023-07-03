@@ -3,7 +3,7 @@
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nombre de la atracción</label>
             <input type="text" v-model="game.name" class="form-control" id="exampleInputPassword1">
-            
+
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Capacidad de personas</label>
@@ -17,38 +17,24 @@
             <label for="exampleInputPassword1" class="form-label">Precio de entrada</label>
             <input type="number" v-model="game.salesPrice" class="form-control" id="exampleInputPassword1">
         </div>
-        
+
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 </template>
 
-<script>
-import axios from 'axios';
+<script setup>
+import { ref } from 'vue';
+import GameService from '../../services/GameService.js';
+const gamService = new GameService();
+let game = ref({
+  name: '',
+  capacityPersons: 0,
+  duration: '',
+  salesPrice: 0,
+  registrationDate: ''
+});
 
-export default {
-    data() {
-        return {
-            game: {
-                name: '',
-                capacityPersons: 0,
-                duration:0,
-                salesPrice: 0,
-                registrationDate:''
-            }
-        }
-    },
-    methods: {
-        saveGame() {
-            //Realizo una convercion para la duración del juego y para la fecha 
-            this.game.duration = '00:'+this.game.duration+':00'
-            this.game.registrationDate = new Date().toISOString();
-            axios.post('/games', this.game).then(
-                response => {
-                    console.log(response.status);
-                    location.href = "/juegos";
-                }
-            );
-        }
-    }
+const saveGame = () => {
+  gamService.save(game.value);
 }
 </script>

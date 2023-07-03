@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="saveGame">
+  <form @submit.prevent="saveSchedule">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Hora de inicio</label>
       <input type="time" v-model="schedule.startTime" class="form-control" id="exampleInputPassword1">
@@ -20,37 +20,20 @@
   </form>
 </template>
   
-<script>
-import axios from 'axios';
 
-export default {
-  data() {
-    return {
-
-      schedule: {
-        startTime: "",
-        endTime: "",
-        weekDay: "",
-        gameId: 0
-      }
-    }
-  },
-
-
-
-  methods: {
-    saveGame() {
-
-      this.schedule.startTime = `${this.schedule.startTime}`
-      this.schedule.endTime = `${this.schedule.endTime}`
-      axios.post('/schedules', this.schedule).then(
-        response => {
-          console.log(response.status);
-          location.href = "/horarios";
-        }
-      );
-    }
-  }
+<script setup>
+import { ref } from 'vue';
+import ScheduleService from '../../services/ScheduleService.js';
+const scheService = new ScheduleService();
+let schedule = ref({
+  startTime: "",
+  endTime: "",
+  weekDay: "",
+  gameId: 0
+});
+const saveSchedule = () => {
+  scheService.save(schedule.value);
 }
+
 </script>
   

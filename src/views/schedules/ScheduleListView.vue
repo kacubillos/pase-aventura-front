@@ -27,34 +27,26 @@
     </div>
   </template>
   
-  <script>
-  import axios from 'axios';
+  <script setup>
+  import {ref, onMounted} from 'vue';
+  import ScheduleService from '../../services/ScheduleService.js';
   
-  export default {
-    data() {
-      return {
-        schedules: []
-      }
-    },
-    mounted: function () {
-      this.getGames();
-    },
-    methods: {
-      getGames() {
-        axios.get('/schedules').then(
-          response => {
-            this.schedules = response.data;
-          }
-        );
-      },
-      deleteGame(scheId) {
-        axios.delete('/schedules/' + scheId).then(
-          response => {
-            alert("Eliminado correctamente");
-            location.href = "/horarios";
-          }
-        );
-      }
+  let schedules = ref([])
+  
+  const scheService = new ScheduleService();
+  schedules = scheService.getSchedules();
+  
+  onMounted(async () => {
+    await scheService.fetchAll();
+  });
+  const deleteGame = async (scheId) => {
+    const res = await scheService.deleteOne(scheId);
+    if (res) {
+      alert('Eliminado correctamente.')
+      schedules.value = schedules.value.filter(sche => sche.scheId != scheId);
+    } else {
+      alert('Error.')
     }
   }
+  
   </script>

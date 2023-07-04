@@ -6,16 +6,20 @@
                 <span class="fs-6">Inicio</span>
             </router-link>
             <div class="d-flex flex-column px-5 mx-5 my-4">
-                <h1 class="text-center">¡Bienvenido!</h1>
+                <div class="alert alert-danger" v-if="error" role="alert">
+                    {{ errorMsg }}
+                </div>
+                <h1 class="title text-center">¡Bienvenido!</h1>
                 <form @submit.prevent="login">
                     <div class="mb-4">
                         <label for="exampleInputEmail1" class="form-label">Correo electronico</label>
                         <input v-model="email" type="email" class="form-control" id="exampleInputEmail1"
-                            aria-describedby="emailHelp">
+                            aria-describedby="emailHelp" placeholder="Introduce tu correo electronico">
                     </div>
                     <div class="mb-4">
                         <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                        <input v-model="password" type="password" class="form-control" id="exampleInputPassword1">
+                        <input v-model="password" type="password" class="form-control" id="exampleInputPassword1"
+                            placeholder="Introduce tu contraseña">
                     </div>
                     <button type="submit" class="btn btn-login w-100 my-3">Iniciar sesión</button>
                 </form>
@@ -50,30 +54,54 @@ const router = useRouter();
 let email = ref('');
 let password = ref('');
 
+let error = ref(false);
+let errorMsg = ref('false');
+
 const login = async () => {
     const auth = useAuthStore();
     const success = await auth.login(email.value, password.value);
 
     if (success)
         router.push('/');
-    else
-        console.log('Error');
+    else {
+        error.value = true;
+        errorMsg.value = auth.error;
+    }
 }
 </script>
 
 <style scoped>
+.title {
+    color: var(--neutral-title);
+}
+
+.form-control {
+    border-radius: var(--border-radius-xs);
+    padding: var(--padding-button-1);
+}
+
+.form-control::placeholder {
+    color: var(--neutral-text-light);
+}
+
+.form-control:hover {
+    border-color: var(--neutral-border-strong);
+}
+
 .btn-login {
-  border-radius: 5px;
-  padding: 0.7rem 0.7rem;
-  background-color: #457b9d;
-  color: var(--white);
-  box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.1);
+    border-radius: var(--border-radius-xs);
+    padding: var(--padding-button-2);
+    background-color: var(--blue-500);
+    color: var(--white);
+    box-shadow: var(--shadow-xs) var(--black-900-shadow-2);
 }
+
 .btn-login:hover {
-  background-color: #457b9d;
-  color: var(--white);
-  box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.2);
+    background-color: var(--blue-600);
+    color: var(--white);
+    box-shadow: var(--shadow-sm) var(--black-900-shadow-3);
 }
+
 .cover {
     position: absolute;
     top: 0;

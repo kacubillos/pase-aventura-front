@@ -51,7 +51,7 @@
                         <option value="2">Montaña rusa</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary position-relative start-50 translate-middle-x my-4 px-5">Guardar</button>
+                <button type="submit" class="btn btn-blue position-relative start-50 translate-middle-x my-4 px-5">Guardar</button>
             </fieldset>
         </form>
     </div>
@@ -90,5 +90,35 @@ const saveEmployee = () => {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.form-control, .form-select {
+    border-radius: var(--border-radius-xs);
+    padding: var(--padding-button-1);
+}
+
+.form-control::placeholder {
+    color: var(--neutral-text-light);
+}
+
+.form-control:hover, .form-select:hover {
+    border-color: var(--neutral-border-strong);
+}
+
+.btn {
+    padding: var(--padding-button-3);
+    border-radius: var(--border-radius-md);
+}
+
+.btn-blue {
+    background-color: var(--blue-500);
+    color: var(--white);
+    box-shadow: var(--shadow-xs) var(--black-900-shadow-2);
+}
+
+.btn-blue:hover {
+    background-color: var(--blue-600);
+    color: var(--white);
+    box-shadow: var(--shadow-sm) var(--black-900-shadow-3);
 }
 </style>

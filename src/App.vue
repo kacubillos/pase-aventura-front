@@ -28,8 +28,12 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <div class="dropdown-container">
-                <li><p class="title">¡Hola, Kevin!</p></li>
-                <li><p class="role text-muted">Admin</p></li>
+                <li>
+                  <p class="title">¡Hola, Kevin!</p>
+                </li>
+                <li>
+                  <p class="role text-muted">Admin</p>
+                </li>
                 <li><a class="dr-link">Ver mi perfil</a></li>
               </div>
               <li>
@@ -106,20 +110,24 @@ const logout = () => {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+
 .title {
   font-size: 1rem;
   font-weight: 600;
   margin: 0;
 }
+
 .role {
   font-size: 0.9rem;
   margin: 0;
 }
+
 .dr-link {
   font-size: 0.9rem;
   text-decoration: none;
   cursor: pointer;
 }
+
 .img-container {
   width: 40px;
   height: 40px;
@@ -129,21 +137,24 @@ const logout = () => {
   cursor: pointer;
 }
 
-.img-container>img {
+.img-container > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 .btn-login {
-  background-color: #000;
-  color: var(--white);
-  box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.1);
+  padding: var(--padding-button-3);
+  background-color: var(--color-black-1);
+  color: var(--color-white);
+  box-shadow: var(--shadow-xs) var(--color-black-1-shadow-3);
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition-short);
 }
 
 .btn-login:hover {
-  background-color: #031926;
-  color: var(--white);
-  box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.2);
-}
-</style>
+  background-color: var(--color-black-3);
+  color: var(--color-white);
+  box-shadow: var(--shadow-xs) var(--color-black-1-shadow-2);
+  transform: scale(0.95);
+}</style>

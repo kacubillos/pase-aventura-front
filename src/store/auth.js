@@ -9,7 +9,8 @@ const useAuthStore = defineStore('auth', {
             currentUser: {
                 email: '',
                 role: ''
-            }
+            },
+            error: ''
         }
     },
     actions: {
@@ -28,7 +29,8 @@ const useAuthStore = defineStore('auth', {
                     }
                 });
 
-                if('errors' in res) {
+                if(res.status == 401) {
+                    this.error = 'El correo electronico o la contraseña son incorrectos.';
                     return false;
                 }
 
@@ -42,7 +44,7 @@ const useAuthStore = defineStore('auth', {
 
                 return true;
             } catch (error) {
-                console.log(error);
+                this.error = 'El correo electronico o la contraseña son incorrectos.';
                 return false;
             }
         },

@@ -59,8 +59,7 @@ class EmployeeService {
                 result.sucessful = true;
                 result.body = res.data;
                 return result;
-            }
-            else {
+            } else {
                 result.error = 'Error, revise la información';
                 return result;
             }

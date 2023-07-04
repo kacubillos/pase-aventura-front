@@ -10,7 +10,7 @@
             </router-link>
         </td>
         <td>{{ props.content.documentType + ' ' + props.content.documentNum }}</td>
-        <td>{{ props.content.birthDate }}</td>
+        <td>{{ props.content.birthDate.split('T')[0] }}</td>
         <td>
             <span class="badge" :class="{ 'bg-admin': props.content.role.roleId == 1, 'bg-emp': props.content.role.roleId == 2 }">{{ props.content.role.name }}</span>
         </td>
@@ -45,12 +45,12 @@ td {
 }
 
 .bg-admin {
-    color: var(--red-1);
-    background-color: var(--red-1-soft);
+    color: var(--red-500);
+    background-color: var(--red-100);
 }
 
 .bg-emp {
-    color: var(--green);
-    background-color: var(--green-soft);
+    color: var(--green-500);
+    background-color: var(--green-100);
 }
 </style>

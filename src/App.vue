@@ -45,6 +45,7 @@
           <li v-else>
             <router-link class="btn btn-login" to="/login">Iniciar sesión</router-link>
           </li>
+          <button v-if="token != null" @click="logout">Cerrar sesión</button>
         </ul>
       </div>
     </div>

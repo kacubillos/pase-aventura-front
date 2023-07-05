@@ -11,7 +11,7 @@
             </router-link>
         </td>
         <td>{{ props.content.date.split('T')[0] }}</td>
-        <td>{{ props.content.date.total == null ? 0 : props.content.date.total }}</td>
+        <td>{{ COP.format(props.content.total) }}</td>
         <td>
             <router-link class="btn btn-green mx-3" :to="{ path: '/ventas/' + props.content.saleId }">
                 <v-icon name="fa-regular-edit" />
@@ -28,6 +28,11 @@ import CustomerService from '../services/CustomerService.js';
 const custService = new CustomerService();
 const props = defineProps(['content']);
 const custs = custService.getCustomers();
+
+let COP = new Intl.NumberFormat('es-CO', {
+    style: 'currency',
+    currency: 'COP',
+});
 
 onMounted(async () => {
     await custService.fetchAll();

@@ -75,6 +75,7 @@ const defaultItems = [
 const adminItems = [
   { name: 'Inicio', to: '/home' },
   { name: 'Empleados', to: '/empleados' },
+  { name: 'Compradores', to: '/compradores' },
 ];
 
 const empItems = [

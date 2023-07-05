@@ -1,38 +1,53 @@
 import { ref } from 'vue';
 import axios from 'axios';
 
-class SaleService {
+class TicketService {
     constructor() {
-        this.sales = ref([])
+        this.tickets = ref([])
     }
 
-    getSales() {
-        return this.sales;
+    getTickets() {
+        return this.tickets;
     }
 
     async fetchAll() {
         try {
             const res = await axios({
                 method: 'get',
-                url: '/sales'
+                url: '/tickets'
             });
 
-            this.sales.value = res.data;
+            this.tickets.value = res.data;
         } catch (error) {
             console.log(error);
         }
     }
 
-    async fetchOne(saleId) {
+    async fetchOne(ticketId) {
         try {
             const res = await axios({
                 method: 'get',
-                url: '/sales/' + saleId
+                url: '/tickets/' + ticketId
             });
 
-            let sale = res.data;
+            let ticket = res.data;
 
-            return sale;
+            return ticket;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async fetchBySale(saleId) {
+        try {
+            const res = await axios({
+                method: 'get',
+                url: '/tickets/sale/' + saleId
+            });
+
+            let tickets = res.data;
+
+            return tickets;
         } catch (error) {
             console.log(error);
         }
@@ -72,4 +87,4 @@ class SaleService {
     }
 }
 
-export default SaleService
+export default TicketService

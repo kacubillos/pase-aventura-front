@@ -25,13 +25,13 @@
     .table {
         border-collapse: separate;
         border-spacing: 0;
-        border-radius: 10px;
-        border: 1px solid rgb(229, 231, 235);
+        border-radius: var(--border-radius-sm);
+        border: 1px solid var(--neutral-border);
     }
 
     .table th {
-        padding: 0.7rem;
-        color: rgba(0, 0, 0, 0.3);
-        border-bottom: 1px solid rgb(229, 231, 235);
+        padding: var(--padding-button-2);
+        color: var(--neutral-text-lighter);
+        border-bottom: 1px solid var(--neutral-border);
     }
 </style>

@@ -51,11 +51,11 @@
                 </select>
             </div>
         </fieldset>
-        <button class="btn btn-warning w-50 position-relative start-50 translate-middle-x" v-if="disabledDataForm"
+        <button class="btn btn-blue w-50 position-relative start-50 translate-middle-x" v-if="disabledDataForm"
             @click="handleDataForm">Editar</button>
         <div v-else class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary w-25 mx-2">Guardar</button>
             <button class="btn btn-dark w-25 mx-2" @click="handleDataForm">Cancelar</button>
+            <button type="submit" class="btn btn-green w-25 mx-2">Guardar</button>
         </div>
     </form>
 </template>
@@ -98,5 +98,53 @@ const saveEmployee = async () => {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.form-control, .form-select {
+    border-radius: var(--border-radius-xs);
+    padding: var(--padding-button-1);
+}
+
+.form-control::placeholder {
+    color: var(--neutral-text-light);
+}
+
+.form-control:hover, .form-select:hover {
+    border-color: var(--neutral-border-strong);
+}
+
+.btn {
+    padding: var(--padding-button-2);
+    border-radius: var(--border-radius-md);
+}
+
+.btn-blue {
+    background-color: var(--blue-500);
+    color: var(--white);
+    box-shadow: var(--shadow-xs) var(--black-900-shadow-2);
+}
+
+.btn-blue:hover {
+    background-color: var(--blue-600);
+    color: var(--white);
+    box-shadow: var(--shadow-sm) var(--black-900-shadow-3);
+}
+
+.btn-green {
+    background-color: var(--green-400);
+    color: var(--white);
+    box-shadow: var(--shadow-xs) var(--black-900-shadow-2);
+}
+
+.btn-green:hover {
+    background-color: var(--green-500);
+    color: var(--white);
+    box-shadow: var(--shadow-sm) var(--black-900-shadow-3);
+}
+
+.btn-dark {
+    background-color: var(--white);
+    color: var(--black-900);
+    border: 1px solid var(--black-200);
 }
 </style>

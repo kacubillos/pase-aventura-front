@@ -21,7 +21,8 @@
                     </div>
                     <div></div>
                 </div>
-                <button type="submit" class="btn btn-primary position-relative start-50 translate-middle-x my-4 px-5" @click.prevent="saveAccount">Guardar</button>
+                <button type="submit" class="btn btn-blue position-relative start-50 translate-middle-x my-4 px-5"
+                    @click.prevent="saveAccount">Guardar</button>
             </fieldset>
         </form>
     </div>
@@ -38,13 +39,42 @@ let email = ref('');
 let password = ref('');
 let repeatPassword = ref('');
 
-/* Error cuando las contraseñas no coinciden, no se crea usuario */
 const saveAccount = () => {
-    if(password.value == repeatPassword.value)
+    if (password.value === repeatPassword.value)
         emit('nextStep', { email: email.value, password: password.value });
     else
         passwordError.value = true;
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.form-control {
+    border-radius: var(--border-radius-xs);
+    padding: var(--padding-button-1);
+}
+
+.form-control::placeholder {
+    color: var(--neutral-text-light);
+}
+
+.form-control:hover {
+    border-color: var(--neutral-border-strong);
+}
+
+.btn {
+    padding: var(--padding-button-2);
+    border-radius: var(--border-radius-md);
+}
+
+.btn-blue {
+    background-color: var(--blue-500);
+    color: var(--white);
+    box-shadow: var(--shadow-xs) var(--black-900-shadow-2);
+}
+
+.btn-blue:hover {
+    background-color: var(--blue-600);
+    color: var(--white);
+    box-shadow: var(--shadow-sm) var(--black-900-shadow-3);
+}
+</style>

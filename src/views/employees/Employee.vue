@@ -23,15 +23,15 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">¿Estas seguro de eliminar este empleado?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">¿Esta seguro de eliminar este empleado?</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Una vez que eliminas un empleado, no hay vuelta atrás. Por favor, esté seguro.
+                    Una vez se elimina un empleado, no hay vuelta atrás. Por favor, esté seguro.
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" @click="deleteEmployee(employee.employeeId)">Eliminar</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-red-dark" @click="deleteEmployee(employee.employeeId)">Eliminar</button>
                 </div>
             </div>
         </div>
@@ -40,14 +40,13 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import EmployeeService from '../../services/EmployeeService.js';
 
 import EmployeeInfoForm from '../../components/EmployeeInfoForm.vue';
 import EmployeeAccountForm from '../../components/EmployeeAccountForm.vue';
 
 const route = useRoute();
-const router = useRouter();
 const empService = new EmployeeService();
 
 const id = route.params.id;
@@ -61,10 +60,10 @@ const deleteEmployee = async (empId) => {
     const res = await empService.deleteOne(empId);
 
     if (res) {
-        router.push('/empleados');
+        window.location = '/empleados'
     } else {
         alert('Error, intente de nuevo.');
-        router.push('/empleados');
+        window.location = '/empleados'
     }
 }
 </script>
@@ -72,18 +71,50 @@ const deleteEmployee = async (empId) => {
 <style scoped>
 form {
     background-color: var(--white);
-    border: 1px solid #E5E7EB;
-    border-radius: 10px;
+    border: 1px solid var(--neutral-border);
+    border-radius: var(--border-radius-md);
     padding: 1rem;
 }
 
+.btn {
+    border-radius: var(--border-radius-md);
+    padding: var(--padding-button-3);
+}
 .btn-red {
-    background-color: var(--red-1-soft);
-    color: var(--red-1);
+    background-color: var(--red-100);
+    color: var(--red-400);
+    transition: var(--transition-short-bounce);
 }
 
 .btn-red:hover {
-    background-color: var(--red-1);
+    background-color: var(--red-400);
     color: var(--white);
+    box-shadow: var(--shadow-sm) var(--red-500-shadow);
+    transform: translateY(1px);
+}
+
+
+.btn-red-dark {
+    color: var(--white);
+    background-color: var(--red-400);
+    transition: var(--transition-short-bounce);
+}
+
+.btn-red-dark:hover {
+    color: var(--white);
+    background-color: var(--red-400);
+    box-shadow: var(--shadow-xs) var(--red-500-shadow);
+    transform: scale(1.05);
+}
+
+.btn-light {
+    border: 1px solid var(--neutral-border-medium);
+    transition: var(--transition-short-bounce);
+}
+
+.btn-light:hover {
+    background-color: var(--black-900-shadow-2);
+    box-shadow: var(--shadow-xs) var(--black-900-shadow-2);
+    transform: scale(1.05);
 }
 </style>

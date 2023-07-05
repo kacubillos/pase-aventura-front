@@ -71,21 +71,30 @@ onMounted(async () => {
 
 <style scoped>
 .btn {
-  border-radius: 5px;
-  padding: 0.7rem 0.7rem;
+  border-radius: var(--border-radius-xs);
+  padding: var(--padding-button-3);
 }
 
 .filters {
   background-color: var(--white);
-  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm) var(--black-900-shadow-3);
   padding: 15px 20px;
-  border-radius: 10px;
-  /* border: 1px solid rgb(229, 231, 235); */
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--neutral-border);
 }
 
 .input-group {
-  border: 1px solid rgb(229, 231, 235);
-  border-radius: 5px;
+  border: 1px solid var(--neutral-border-medium);
+  border-radius: var(--border-radius-xs);
+  overflow: hidden;
+}
+
+::placeholder {
+    color: var(--neutral-text-light);
+}
+
+.input-group:hover {
+  border-color: var(--neutral-border-strong);
 }
 
 .input-group-text {
@@ -104,7 +113,7 @@ onMounted(async () => {
 }
 
 .select-label {
-  color: rgba(0, 0, 0, 0.3);
+  color: var(--neutral-text-light);
 }
 
 .select {
@@ -113,9 +122,9 @@ onMounted(async () => {
 }
 
 .btn-icon {
-  padding: 3px;
+  padding: 5px;
   border: none;
-  border-radius: 5px;
+  border-radius: var(--border-radius-xs);
   background-color: transparent;
 }
 

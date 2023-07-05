@@ -75,10 +75,12 @@ const adminItems = [
   { name: 'Inicio', to: '/home' },
   { name: 'Empleados', to: '/empleados' },
   { name: 'Compradores', to: '/compradores' },
+  { name: 'Reportes', to: '/reportes' }
 ];
 
 const empItems = [
-  { name: 'Inicio', to: '/home' }
+  { name: 'Inicio', to: '/home' },
+  { name: 'Ventas', to: '/ventas' }
 ];
 
 const auth = useAuthStore();
@@ -146,16 +148,16 @@ const logout = () => {
 
 .btn-login {
   padding: var(--padding-button-3);
-  background-color: var(--color-black-1);
-  color: var(--color-white);
-  box-shadow: var(--shadow-xs) var(--color-black-1-shadow-3);
+  background-color: var(--black-900);
+  color: var(--white);
+  box-shadow: var(--shadow-xs) var(--black-900-shadow-3);
   border-radius: var(--border-radius-sm);
   transition: var(--transition-short);
 }
 
 .btn-login:hover {
-  background-color: var(--color-black-3);
-  color: var(--color-white);
-  box-shadow: var(--shadow-xs) var(--color-black-1-shadow-2);
+  background-color: var(--black-500);
+  color: var(--white);
+  box-shadow: var(--shadow-xs) var(--black-900-shadow-2);
   transform: scale(0.95);
 }</style>

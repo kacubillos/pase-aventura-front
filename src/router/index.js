@@ -16,6 +16,8 @@ import Role from "../helpers/role.js";
 import Customer from "../views/customers/customers.vue";
 import newCustomer from "../views/customers/NewCustomer.vue";
 import EditCustomer from "../views/customers/EditCustomer.vue";
+import ListSales from "../views/sales/ListSales.vue";
+import InsightView from "../views/InsightView.vue";
 
 const routes = [
     {
@@ -93,7 +95,16 @@ const routes = [
         component: EditCustomer,
         meta: { requireAuth: true, role: [ Role.admin ] }
     },
-
+    {
+        path: '/ventas',
+        component: ListSales,
+        meta: { requireAuth: true, role: [ Role.emp ] }
+    },
+    {
+        path: '/reportes',
+        component: InsightView,
+        meta: { requireAuth: true, role: [ Role.admin ] }
+    }
 ];
 
 const router = createRouter({

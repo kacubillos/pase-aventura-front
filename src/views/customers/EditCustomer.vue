@@ -10,7 +10,7 @@
                 <div class="d-flex justify-content-center">
                     <div class="col-sm-3" style="margin: 2%;">
                         <label for="inputnommbres" class="form-label">Id</label>
-                        <input type="text" class="form-control" id="inputNombres" v-model="customer.customerId"
+                        <input type="text" class="form-control" id="inputNombres" :disabled="true" v-model="customer.customerId"
                             style="background: #F2F2F2;">
                     </div>
                 </div>
@@ -42,13 +42,13 @@
                 <div class="d-flex justify-content-center">
                     <div class="col-sm-3" style="margin: 2%;">
                         <label for="inputApellidos" class="form-label">Fecha de registro</label>
-                        <input type="date" class="form-control" id="inputFechaNacimiento" v-model="customer.dateRegistration" style="background:#F2F2F2;">
+                        <input type="date" class="form-control" :disabled="true" id="inputFechaNacimiento" v-model="customer.dateRegistration" style="background:#F2F2F2;">
                     </div>
                 </div>
 
             </div>
             <div class="d-flex justify-content-center" style="margin-top: 5% ;">
-                <button type="submit" class="btn btn-primary mb-3">
+                <button type="submit" class="btn btn-primary mb-3 btn-blue">
                     <v-icon name="pr-save" />
                     Guardar
                 </button>
@@ -88,3 +88,16 @@ const updateCustomer = () => {
 
 
 </script>
+
+<style scoped>
+.btn-blue {
+    color: var(--black-1);
+    padding: var(--padding-button-3);
+  }
+  
+  .btn-blue:hover {
+    background-color: var(--blue-700);
+    color: var(--white);
+  }
+</style>
+

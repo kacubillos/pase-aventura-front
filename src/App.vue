@@ -80,7 +80,9 @@ const adminItems = [
 
 const empItems = [
   { name: 'Inicio', to: '/home' },
-  { name: 'Ventas', to: '/ventas' }
+  { name: 'Ventas', to: '/ventas' },
+  { name: 'Juegos', to: '/Juegos' },
+  { name: 'Horarios', to: '/horarios' }
 ];
 
 const auth = useAuthStore();

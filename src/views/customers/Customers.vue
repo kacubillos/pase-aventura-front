@@ -38,7 +38,7 @@
 
     </div>
     <div class="position-absolute top-0 end-0" style="margin-top: 1%;">
-      <router-link to="/compradores/nuevo" class="btn btn-primary mb-3">
+      <router-link to="/compradores/nuevo" class="btn btn-primary mb-3 btn-blue">
         <v-icon name="la-user-plus-solid" />
         Nuevo comprador
       </router-link>
@@ -135,7 +135,7 @@ const deleteCustomer = async (customerId) => {
 }
 
 .btn-red:hover {
-  background-color: var(--red-1);
+  background-color: var(--red-500);
   color: var(--white);
 }
 
@@ -144,7 +144,17 @@ const deleteCustomer = async (customerId) => {
 }
 
 .btn-darkgoldenrod:hover {
-  background-color: rgba(128, 120, 14, 0.801);
+  background-color: var(--yellow-800);
+  color: var(--white);
+}
+
+.btn-blue {
+  color: var(--black-1);
+  padding: var(--padding-button-3);
+}
+
+.btn-blue:hover {
+  background-color: var(--blue-700);
   color: var(--white);
 }
 </style>

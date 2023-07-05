@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center" style="margin-top: 5% ;">
-                <button type="submit" class="btn btn-primary mb-3">
+                <button type="submit" class="btn btn-primary mb-3 btn-blue">
                     <v-icon name="pr-save" />
                     Guardar
                 </button>
@@ -70,11 +70,21 @@ const saveCustomer = () => {
 }
 </script>
 
-<style>
+<style scoped>
 .form {
     background-color: var(--white);
     box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.03);
     border: 1px solid #E5E7EB;
     border-radius: 20px;
+}
+
+.btn-blue {
+  color: var(--black-1);
+  padding: var(--padding-button-3);
+}
+
+.btn-blue:hover {
+  background-color: var(--blue-700);
+  color: var(--white);
 }
 </style>

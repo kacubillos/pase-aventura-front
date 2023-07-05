@@ -23,10 +23,27 @@ class CustomerService {
         }
     }
 
+    async fetchOne(CusId) {
+        try {
+            const res = await axios({
+                method: 'get',
+                url: '/customers/' + CusId
+            });
+
+            let customer = res.data;
+            customer.dateBirth = customer.dateBirth.split('T')[0];
+            customer.dateRegistration = customer.dateRegistration.split('T')[0];
+
+            return customer;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async save(customer) {
         try {
             customer.dateBirth = new Date().toISOString(customer.birthdate);
-            customer.dateRegistration=new Date().toISOString();
+            customer.dateRegistration = new Date().toISOString();
 
             const res = await axios({
                 method: 'post',
@@ -38,7 +55,7 @@ class CustomerService {
                 return true;
             else
                 return false;
-        }catch(error){
+        } catch (error) {
             console.log(error);
         }
 
@@ -46,20 +63,21 @@ class CustomerService {
 
     async update(customer) {
         try {
-            customer.birthDate = new Date().toISOString(customer.birthDate);
+            customer.dateBirth = new Date().toISOString(customer.dateBirth);
+            customer.dateRegistration = new Date().toISOString(customer.dateRegistration);
 
             const res = await axios({
                 method: 'put',
-                url: '/customers',
+                url: '/customers/',
                 data: customer
             });
 
-            if(res.status == 200)
+            if (res.status == 200)
                 return true;
             else
                 return false;
         } catch (error) {
-            console.log(error);
+            console.log("Error: "+error);
         }
     }
 
@@ -67,15 +85,15 @@ class CustomerService {
         try {
             const res = await axios({
                 method: 'delete',
-                url: '/customers/' + empId
+                url: '/customers/' + cusId
             });
 
-            if(res.data.errors)
+            if (res.data.errors)
                 return false;
             else
                 return true;
         } catch (error) {
-            console.log('Error');
+            console.log('Error:'+error);
         }
     }
 

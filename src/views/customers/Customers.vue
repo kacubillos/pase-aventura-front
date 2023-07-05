@@ -2,28 +2,28 @@
   <div class="position-relative" style="margin-top: 1.5%;">
     <div class="position-relative top-0 start-0">
       <h2>Compradores</h2>
-      <p> Bienvenido a la pagina principal de compradores </p>
 
-      <div class="row g-3 ">
+      <div style="margin-top: 3%;" class="row g-3 ">
         <div class="input-group mb-3 col-sm">
 
           <label class="input-group-text" for="inputGroupSelect01">
-            <v-icon name="hi-solid-search"/>
+            <v-icon name="co-search" />
           </label>
 
           <input type="text" class="form-control btn-sm" placeholder="" aria-label="Nombre de usuario"
             aria-describedby="basic-addon1">
 
           <button class="btn btn-outline-secondary" type="button" id="button-addon1">
-            <v-icon name="hi-solid-search"/>
+            <v-icon name="co-search" />
           </button>
         </div>
 
         <div class="dropdown col-sm ">
           <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
             data-bs-toggle="dropdown" aria-expanded="false">
+            <v-icon name="la-filter-solid" />
             filtros
-            <v-icon name="la-filter-solid"/>
+
           </a>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="fo">
             <li><a class="dropdown-item" href="#">Id</a></li>
@@ -37,15 +37,15 @@
 
 
     </div>
-    <div class="position-absolute top-0 end-0">
+    <div class="position-absolute top-0 end-0" style="margin-top: 1%;">
       <router-link to="/compradores/nuevo" class="btn btn-primary mb-3">
-        <v-icon name="bi-plus-lg"/>
+        <v-icon name="la-user-plus-solid" />
         Nuevo comprador
       </router-link>
     </div>
   </div>
   <div>
-    <div class="table-responsive-xl">
+    <div class="table-responsive-xl" style="margin-top: 2%;">
       <table class="table">
         <thead>
           <tr>
@@ -58,8 +58,22 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-
+          <tr v-for="cus, i in customers" :key="cus.customerId">
+            <td>{{ cus.customerId }}</td>
+            <td>{{ cus.name }}</td>
+            <td>{{ cus.lastname }}</td>
+            <td>{{ cus.dateBirth }}</td>
+            <td>{{ cus.dateRegistration }}</td>
+            <td>
+              <button type="button" class="btn btn-red" @click="deleteCustomer(cus.customerId)">
+                <v-icon name="bi-trash" />
+                Eliminar
+              </button>
+              <router-link :to="{ path: '/compradores/editar/' + cus.customerId }" class="btn btn-darkgoldenrod">
+                <v-icon name="la-user-edit-solid" />
+                Editar
+              </router-link>
+            </td>
           </tr>
         </tbody>
 
@@ -83,4 +97,55 @@
     </nav>
   </div>
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import CustomerService from '../../services/CustomerService.js';
+
+const router = useRouter();
+
+let customers = ref([])
+
+const cusService = new CustomerService();
+customers = cusService.getCustomers();
+
+onMounted(async () => {
+  await cusService.fetchAll();
+});
+
+const deleteCustomer = async (customerId) => {
+  const res = await cusService.deleteOne(customerId)
+
+  if (res) {
+    alert('Eliminado con exito.');
+    router.push('/compradores');
+  } else {
+    alert('Error, intente de nuevo.');
+    router.push('/compradores');
+  }
+
+};
+
+</script>
+
+<style scoped>
+.btn-red {
+  color: var(--black-1);
+}
+
+.btn-red:hover {
+  background-color: var(--red-1);
+  color: var(--white);
+}
+
+.btn-barkgoldenrod {
+  color: var(--black-1);
+}
+
+.btn-darkgoldenrod:hover {
+  background-color: rgba(128, 120, 14, 0.801);
+  color: var(--white);
+}
+</style>
   

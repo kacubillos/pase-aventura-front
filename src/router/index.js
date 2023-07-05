@@ -7,6 +7,9 @@ import EmployeeView from "../views/employees/Employee.vue";
 import SaveView from "../views/employees/SaveView.vue";
 import useAuthStore from "../store/auth.js";
 import Role from "../helpers/role.js";
+import Customer from "../views/customers/customers.vue";
+import newCustomer from "../views/customers/NewCustomer.vue";
+import EditCustomer from "../views/customers/EditCustomer.vue";
 
 const routes = [
     {
@@ -39,6 +42,23 @@ const routes = [
         component: SaveView,
         meta: { requireAuth: true, role: [ Role.admin ] }
     },
+    
+    {
+        path: '/compradores',
+        component: Customer,
+        meta: { requireAuth: true, role: [ Role.admin ] }
+    },
+    {
+        path: '/compradores/nuevo',
+        component: newCustomer,
+        meta: { requireAuth: true, role: [ Role.admin ] }
+    },
+    {
+        path: '/compradores/editar/:id',
+        component: EditCustomer,
+        meta: { requireAuth: true, role: [ Role.admin ] }
+    },
+
 ];
 
 const router = createRouter({

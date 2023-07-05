@@ -13,6 +13,9 @@ import Schedule from "../views/schedules/Schedule.vue";
 import ScheduleSaveView from "../views/schedules/ScheduleSaveView.vue";
 import useAuthStore from "../store/auth.js";
 import Role from "../helpers/role.js";
+import Customer from "../views/customers/customers.vue";
+import newCustomer from "../views/customers/NewCustomer.vue";
+import EditCustomer from "../views/customers/EditCustomer.vue";
 
 const routes = [
     {
@@ -74,8 +77,22 @@ const routes = [
         path: '/horarios/nuevo',
         component: ScheduleSaveView,
         meta: { requireAuth: true, role: [Role.emp] }
-    }
-
+    },
+    {
+        path: '/compradores',
+        component: Customer,
+        meta: { requireAuth: true, role: [ Role.admin ] }
+    },
+    {
+        path: '/compradores/nuevo',
+        component: newCustomer,
+        meta: { requireAuth: true, role: [ Role.admin ] }
+    },
+    {
+        path: '/compradores/editar/:id',
+        component: EditCustomer,
+        meta: { requireAuth: true, role: [ Role.admin ] }
+    },
 
 ];
 

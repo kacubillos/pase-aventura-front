@@ -53,6 +53,34 @@ class TicketService {
         }
     }
 
+    async save(ticket) {
+        let result = {
+            sucessful: false,
+            body: {},
+            error: ''
+        }
+
+        try {
+            const res = await axios({
+                method: 'post',
+                url: '/tickets',
+                data: ticket
+            });
+
+            if(res.status == 201) {
+                result.sucessful = true;
+                result.body = res.data;
+                return result;
+            } else {
+                result.error = 'Error, revise la información';
+                return result;
+            }
+        } catch (error) {
+            result.error = 'Error, revise la información';
+            return result;
+        }
+    }
+
     async update(sale) {
         try {
             const res = await axios({

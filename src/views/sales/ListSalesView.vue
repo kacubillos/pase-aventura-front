@@ -1,7 +1,7 @@
 <template>
     <div class="d-flex align-items-center justify-content-between my-4">
         <h1 class="m-0">Ventas</h1>
-        <router-link to="/empleados/" class="btn btn-outline-primary">
+        <router-link to="/ventas/nuevo" class="btn btn-outline-primary">
             <v-icon name="md-add-round" />
             <span class="d-none d-md-inline">Nueva venta</span>
         </router-link>

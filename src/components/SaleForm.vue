@@ -52,7 +52,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import SaleService from '../services/SaleService';
 import CustomerService from '../services/CustomerService';

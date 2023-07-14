@@ -54,10 +54,10 @@ const deleteSale = async (saleId) => {
     const res = await saleService.deleteOne(saleId);
 
     if (res) {
-        window.location = '/empleados'
+        window.location = '/ventas'
     } else {
         alert('Error, intente de nuevo.');
-        window.location = '/empleados'
+        window.location = '/ventas'
     }
 }
 </script>

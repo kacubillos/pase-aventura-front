@@ -13,11 +13,12 @@ import Schedule from "../views/schedules/Schedule.vue";
 import ScheduleSaveView from "../views/schedules/ScheduleSaveView.vue";
 import useAuthStore from "../store/auth.js";
 import Role from "../helpers/role.js";
-import Customer from "../views/customers/customers.vue";
+import Customer from "../views/customers/Customers.vue";
 import newCustomer from "../views/customers/NewCustomer.vue";
 import EditCustomer from "../views/customers/EditCustomer.vue";
 import ListSalesView from "../views/sales/ListSalesView.vue";
 import EditSalesView from "../views/sales/EditSalesView.vue";
+import NewSaleView from "../views/sales/NewSaleView.vue";
 import InsightView from "../views/InsightView.vue";
 
 const routes = [
@@ -92,9 +93,9 @@ const routes = [
         meta: { requireAuth: true, role: [ Role.admin ] }
     },
     {
-        path: '/compradores/editar/:id',
+        path: '/compradores/:id',
         component: EditCustomer,
-        meta: { requireAuth: true, role: [ Role.admin ] }
+        meta: { requireAuth: true, role: [ Role.admin, Role.emp ] }
     },
     {
         path: '/ventas',
@@ -104,6 +105,11 @@ const routes = [
     {
         path: '/ventas/:id',
         component: EditSalesView,
+        meta: { requireAuth: true, role: [ Role.emp ] }
+    },
+    {
+        path: '/ventas/nuevo',
+        component: NewSaleView,
         meta: { requireAuth: true, role: [ Role.emp ] }
     },
     {

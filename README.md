@@ -4,7 +4,7 @@ Interfaz web para la administración de entradas vendidas de los distintos juego
 ## 🤝 Requerimientos
 Antes de empezar, asegurémonos de tener instalado lo siguiente:
 
-- [Node.js](https://nodejs.org/) debe ser instalado. Ejecuta el siguiente comando para verificar su versión Node.js/npm:
+- [Node.js](https://nodejs.org/) debe ser instalado. Ejecuta los siguientes comandos para verificar su versión Node.js/npm:
   ```bash
   node --version
   npm --version

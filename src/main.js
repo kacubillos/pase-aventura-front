@@ -17,7 +17,7 @@ import { MdGridviewRound, HiViewList, MdAddRound, MdSearch, BiArrowLeftShort, Md
 /* add icons to the library */
 addIcons(MdGridviewRound, HiViewList, MdAddRound, MdSearch, BiArrowLeftShort, MdDeleteforever, CoSearch, LaFilterSolid, LaUserPlusSolid, PrSave, BiTrash, LaUserEditSolid, FaRegularEdit);
 
-axios.defaults.baseURL = 'http://localhost:8090/api/v1/';
+axios.defaults.baseURL = 'http://localhost:8080/api/v1/';
 
 /* create pinia's instance and use the persistance plugin */
 const pinia = createPinia()

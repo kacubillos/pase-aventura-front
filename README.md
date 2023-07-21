@@ -1,10 +1,28 @@
-# Vue 3 + Vite
+# Parque diversiones front 🎢⭐
+Interfaz web para la administración de entradas vendidas de los distintos juegos en un parque de diversiones. Construida utilizando el framework [Vue 3](https://vuejs.org/) y [Bootstrap 5](https://getbootstrap.com/), se desarrollo específicamente para el evento [HackaCode](https://hackacode.todocodeacademy.com/) organizado por TodoCode.
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 🤝 Requerimientos
+Antes de empezar, asegurémonos de tener instalado lo siguiente:
 
-## Recommended IDE Setup
+- [Node.js](https://nodejs.org/) debe ser instalado. Ejecuta el siguiente comando para verificar su versión Node.js/npm:
+  ```bash
+  node --version
+  npm --version
+  ```
+- [parque-diversiones-api](https://github.com/kacubillos/parque-diversiones-api.git) debe estar previamente descargado y configurado.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-# parque-diversiones-front
-Interfaz web para la administracion de entradas vendidas de un parque de diversiones. 
+## 🚀 Instalación
+Para la instalación se necesita tener instalado Node.js/npm, entonces:
+1. Descargar o clonar el repositorio.
+```bash
+git clone https://github.com/kacubillos/parque-diversiones-front.git
+```
+2. Descargar dependencias.
+```bash
+cd parque-diversiones-front
+npm install
+```
+3. Iniciar el proyecto en modo desarrollo.
+```bash
+npm run dev
+```

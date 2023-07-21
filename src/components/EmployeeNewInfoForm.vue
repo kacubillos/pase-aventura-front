@@ -45,10 +45,11 @@
                     </select>
                 </div>
                 <div class="mb-3" v-if="employee.roleId == 2">
-                    <label for="role" class="form-label">Juego asignado</label>
-                    <select class="form-select" v-model="employee.gameId" id="role">
-                        <option value="1">Toro mecanico</option>
-                        <option value="2">Montaña rusa</option>
+                    <label for="game" class="form-label">Juego</label>
+                    <select class="form-select" id="game" v-model="employee.gameId">
+                        <option :value="game.gameId" v-for="game in games" :key="game.gameId">
+                            {{ game.name }}
+                        </option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-blue position-relative start-50 translate-middle-x my-4 px-5">Guardar</button>
@@ -58,7 +59,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import GameService from '../services/GameService';
+
+const gameService = new GameService();
+
+const games = gameService.getGames();
 
 let employee = ref({
     documentType: '',
@@ -66,10 +72,15 @@ let employee = ref({
     name: '',
     lastname: '',
     birthDate: '',
-    roleId: 0
+    roleId: 0,
+    gameId: null
 });
 
 const emit = defineEmits(['nextStep']);
+
+onMounted(async () => {
+    await gameService.fetchAll();
+});
 
 const saveEmployee = () => {
     emit('nextStep', employee.value);

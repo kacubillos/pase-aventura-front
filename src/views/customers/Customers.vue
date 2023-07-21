@@ -69,7 +69,7 @@
                 <v-icon name="bi-trash" />
                 Eliminar
               </button>
-              <router-link :to="{ path: '/compradores/editar/' + cus.customerId }" class="btn btn-darkgoldenrod">
+              <router-link :to="{ path: '/compradores/' + cus.customerId }" class="btn btn-darkgoldenrod">
                 <v-icon name="la-user-edit-solid" />
                 Editar
               </router-link>

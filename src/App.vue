@@ -29,10 +29,10 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <div class="dropdown-container">
                 <li>
-                  <p class="title">¡Hola, Kevin!</p>
+                  <p class="title">¡Hola!</p>
                 </li>
                 <li>
-                  <p class="role text-muted">Admin</p>
+                  <p class="role text-muted">{{ auth.currentUser.role }}</p>
                 </li>
                 <li><a class="dr-link">Ver mi perfil</a></li>
               </div>

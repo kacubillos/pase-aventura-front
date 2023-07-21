@@ -37,8 +37,8 @@
               align-items-start
               flex-column
             ">
-                <h1>The largest community</h1>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                <h1 class="d-none">The largest community</h1>
+                <p class="d-none">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
             </div>
         </div>
     </div>

@@ -44,10 +44,11 @@
                 </select>
             </div>
             <div class="mb-3" v-if="props.content.roleId == 2">
-                <label for="role" class="form-label">Juego asignado</label>
-                <select class="form-select" v-model="props.content.gameId" id="role">
-                    <option value="1">Toro mecanico</option>
-                    <option value="2">Montaña rusa</option>
+                <label for="game" class="form-label">Juego</label>
+                <select class="form-select" id="game" v-model="props.content.gameId">
+                    <option :value="game.gameId" v-for="game in games" :key="game.gameId">
+                        {{ game.name }}
+                    </option>
                 </select>
             </div>
         </fieldset>
@@ -61,18 +62,26 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import EmployeeService from '../services/EmployeeService.js';
+import GameService from '../services/GameService';
 
 const router = useRouter();
+const gameService = new GameService();
 const empService = new EmployeeService();
+
+const games = gameService.getGames();
 
 const props = defineProps(['content']);
 
 const disabledDataForm = ref(true);
 
 const handleDataForm = () => disabledDataForm.value = !disabledDataForm.value;
+
+onMounted(async () => {
+    await gameService.fetchAll();
+});
 
 const saveEmployee = async () => {
     const isSuccess = await empService.update(props.content);
@@ -100,7 +109,8 @@ const saveEmployee = async () => {
     object-fit: cover;
 }
 
-.form-control, .form-select {
+.form-control,
+.form-select {
     border-radius: var(--border-radius-xs);
     padding: var(--padding-button-1);
 }
@@ -109,7 +119,8 @@ const saveEmployee = async () => {
     color: var(--neutral-text-light);
 }
 
-.form-control:hover, .form-select:hover {
+.form-control:hover,
+.form-select:hover {
     border-color: var(--neutral-border-strong);
 }
 

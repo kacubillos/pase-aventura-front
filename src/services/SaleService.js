@@ -38,6 +38,36 @@ class SaleService {
         }
     }
 
+    async save(sale) {
+        let result = {
+            sucessful: false,
+            body: {},
+            error: ''
+        }
+
+        try {
+            sale.date = new Date().toISOString();
+
+            const res = await axios({
+                method: 'post',
+                url: '/sales',
+                data: sale
+            });
+
+            if(res.status == 201) {
+                result.sucessful = true;
+                result.body = res.data;
+                return result;
+            } else {
+                result.error = 'Error, revise la información';
+                return result;
+            }
+        } catch (error) {
+            result.error = 'Error, revise la información';
+            return result;
+        }
+    }
+
     async update(sale) {
         try {
             const res = await axios({
@@ -52,6 +82,7 @@ class SaleService {
                 return false;
         } catch (error) {
             console.log(error);
+            return false;
         }
     }
 
